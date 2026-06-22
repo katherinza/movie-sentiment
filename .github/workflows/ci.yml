@@ -1,10 +1,14 @@
+# Название workflow
 name: CI
 
+# Триггеры выполнения (запуск при пуше в ветку main)
 on:
   push:
     branches: [ main ]
 
+# Определение заданий
 jobs:
+  # Задание тестирования и сборки
   test-and-build:
     runs-on: ubuntu-latest
     permissions:
@@ -12,22 +16,27 @@ jobs:
       packages: write
 
     steps:
+    # Шаг получения кода из репозитория
     - uses: actions/checkout@v4
 
+    # Шаг настройки окружения Python
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
 
+    # Шаг установки зависимостей для тестов
     - name: Install test dependencies
       run: |
         pip install --upgrade pip
         pip install -r requirements.txt
         pip install pytest httpx
 
+    # Шаг выполнения тестов
     - name: Run tests
       run: pytest tests/
 
+    # Шаг аутентификации в GitHub Container Registry
     - name: Log in to GitHub Container Registry
       uses: docker/login-action@v3
       with:
@@ -35,6 +44,7 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
+    # Шаг сборки и публикации Docker-образа
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
