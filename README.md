@@ -1,3 +1,6 @@
+Обновленный README.md с добавленным разделом загрузки данных.
+
+```markdown
 # Movie Sentiment Analysis
 
 Проект для анализа тональности текстовых рецензий на фильмы. Включает API-сервис на FastAPI, веб-интерфейс на Streamlit, интеграцию с MLflow для отслеживания экспериментов и CI/CD пайплайн.
@@ -61,7 +64,31 @@ cd movie-sentiment
 pip install -r requirements.txt
 ```
 
-### 3. Запуск FastAPI сервера
+### 3. Загрузка данных для обучения (опционально)
+
+Для обучения модели необходимы данные IMDb. Если вы планируете переобучать модель или запускать ноутбуки с обучением, загрузите данные одним из способов.
+
+#### Способ 1 — через HuggingFace datasets
+
+```bash
+pip install datasets
+python -c "from datasets import load_dataset; ds = load_dataset('imdb'); ds.save_to_disk('data/imdb')"
+```
+
+После выполнения команды данные сохранятся в папку `data/imdb/`. Для использования в скриптах обучения потребуется изменить пути загрузки на эту папку или использовать оригинальную структуру `aclImdb`.
+
+#### Способ 2 — прямая загрузка архива со Stanford
+
+```bash
+wget https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz
+tar -xzf aclImdb_v1.tar.gz
+```
+
+После распаковки появится папка `aclImdb/` с подпапками `train/` и `test/`. В коде обучения используется именно эта структура (по умолчанию `data/aclImdb`).
+
+> Примечание: для работы уже обученной модели (API и Streamlit) данные не требуются — модель загружается из файла `model_meta.joblib`. Данные нужны только для повторного обучения или экспериментов.
+
+### 4. Запуск FastAPI сервера
 
 ```bash
 uvicorn app.main:app --reload
@@ -71,7 +98,7 @@ uvicorn app.main:app --reload
 
 Документация API доступна по адресу: `http://localhost:8000/docs`
 
-### 4. Запуск MLflow UI (опционально)
+### 5. Запуск MLflow UI (опционально)
 
 Для просмотра логов экспериментов:
 
@@ -82,7 +109,7 @@ mlflow ui --host 0.0.0.0 --port 5000
 
 MLflow UI будет доступен по адресу: `http://localhost:5000`
 
-### 5. Запуск Streamlit интерфейса
+### 6. Запуск Streamlit интерфейса
 
 ```bash
 streamlit run streamlit_app.py
@@ -90,13 +117,13 @@ streamlit run streamlit_app.py
 
 Streamlit приложение будет доступно по адресу: `http://localhost:8501`
 
-### 6. Запуск тестов
+### 7. Запуск тестов
 
 ```bash
 pytest tests/
 ```
 
-### 7. Запуск через Docker
+### 8. Запуск через Docker
 
 ```bash
 docker build -t movie-sentiment .
