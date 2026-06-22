@@ -1,5 +1,3 @@
-Обновленный README.md с добавленным разделом загрузки данных.
-
 ```markdown
 # Movie Sentiment Analysis
 
