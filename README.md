@@ -40,7 +40,7 @@ movie-sentiment/
 │   └── test_app.py          # Тесты API
 ├── catboost_info/           # Вспомогательные файлы CatBoost
 ├── streamlit_app.py         # Streamlit веб-интерфейс
-├── model_meta.joblib        # Обученная модель
+├── model.joblib        # Обученная модель
 ├── requirements.txt         # Зависимости
 ├── Dockerfile               # Docker конфигурация
 └── .github/workflows/       # CI/CD пайплайны
