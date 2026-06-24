@@ -78,7 +78,7 @@ def validate_review(text: str, allow_russian: bool = True) -> Optional[str]:
     return None
 
 # ---------- Настройка FastAPI-приложения ----------
-app = FastAPI(title="Movie Sentiment API (многоязычный)")
+app = FastAPI(title="Movie Sentiment API")
 
 # ---------- Модели данных ----------
 class ReviewRequest(BaseModel):

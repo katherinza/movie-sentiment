@@ -5,7 +5,6 @@ import streamlit as st
 import joblib
 from pathlib import Path
 from sklearn.base import BaseEstimator, TransformerMixin
-# Импорт библиотеки для перевода текста
 from deep_translator import GoogleTranslator
 
 # ----------------------- Стилизация интерфейса -----------------------
