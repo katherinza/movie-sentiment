@@ -68,9 +68,9 @@ class MetaFeatures(BaseEstimator, TransformerMixin):
 # ----------------------- Загрузка модели с кешированием -----------------------
 @st.cache_resource
 def load_model():
-    model_path = Path(__file__).parent / "model_meta.joblib"
+    model_path = Path(__file__).parent / "model.joblib"
     if not model_path.exists():
-        st.error("Файл model_meta.joblib не найден. Сначала запустите обучение.")
+        st.error("Файл model.joblib не найден. Сначала запустите обучение.")
         st.stop()
     return joblib.load(model_path)
 

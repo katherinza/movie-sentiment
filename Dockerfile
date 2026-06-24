@@ -12,7 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Копирование исходного кода приложения в контейнер
 COPY app/ ./app/
 # Копирование сохранённой модели машинного обучения
-COPY model_meta.joblib .
+COPY model.joblib .
 
 # Открытие порта 8000 для внешнего доступа
 EXPOSE 8000
