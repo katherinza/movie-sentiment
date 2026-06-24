@@ -35,7 +35,7 @@ class MetaFeatures(BaseEstimator, TransformerMixin):
 __main__.MetaFeatures = MetaFeatures
 
 # ---------- Загрузка модели ----------
-MODEL_PATH = Path(__file__).resolve().parent.parent / "model_meta.joblib"
+MODEL_PATH = Path(__file__).resolve().parent.parent / "model.joblib"
 
 model = None
 if MODEL_PATH.exists():
